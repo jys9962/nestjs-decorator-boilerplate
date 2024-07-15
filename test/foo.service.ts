@@ -1,21 +1,33 @@
-import { Inject, Injectable } from '@nestjs/common'
+import { Inject, Injectable } from '@nestjs/common';
 import { LogByWrap } from '../src/decorator/log-by-wrap';
+import { LogByReflect } from '../src/decorator/log-by-reflect';
 
 @Injectable()
 export class FooService {
 
-  constructor(
-
-  ) {}
-
+  constructor() {}
 
   @LogByWrap('my message')
   execute() {
-    return 'result'
+    return 'result';
   }
 
   @LogByWrap('my message')
   async asyncExecute() {
-    return 'result'
+    return 'result';
+  }
+
+  @LogByReflect({
+    message: 'my message',
+  })
+  loggingByReflect() {
+    return 'result';
+  }
+
+  @LogByReflect({
+    message: 'my message',
+  })
+  async asyncLoggingByReflect() {
+    return 'result';
   }
 }
